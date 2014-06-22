@@ -128,6 +128,8 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
         return convnetjs.randi(0, this.num_actions);
       } else {
         // okay, lets do some fancier sampling:
+        // NOTE(CQ): Action order plays a big role, here.
+        //   Is that something we want?
         var p = convnetjs.randf(0, 1.0);
         var cumprob = 0.0;
         for(var k=0;k<this.num_actions;k++) {
@@ -234,8 +236,8 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
           this.experience.push(e);
         } else {
           // replace. finite memory!
-          // Interesting way to pick random action.
-          // Could end up with some very old actions sticking around.
+          // NOTE(CQ): Interesting way to pick random action.
+          //   Could end up with some very old actions sticking around.
           var ri = convnetjs.randi(0, this.experience_size);
           this.experience[ri] = e;
         }
