@@ -234,6 +234,8 @@ var deepqlearn = deepqlearn || { REVISION: 'ALPHA' };
           this.experience.push(e);
         } else {
           // replace. finite memory!
+          // Interesting way to pick random action.
+          // Could end up with some very old actions sticking around.
           var ri = convnetjs.randi(0, this.experience_size);
           this.experience[ri] = e;
         }
